@@ -36,6 +36,7 @@ class vidReader():
     def seek(self,f):
         if self.ext=='seq':
             # I'm not sure this is a thing for seq files
+			return
         else:
             self.reader.set(cv2.CAP_PROP_POS_FRAMES, f)
 
