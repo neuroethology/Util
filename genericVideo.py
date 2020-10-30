@@ -12,7 +12,7 @@ class vidReader():
     def __init__(self,filename):
 
         _, self.ext = os.path.splitext(filename)
-        if self.ext=='seq':
+        if self.ext=='.seq':
             self._reader = seqIo_reader(filename)
             self.NUM_FRAMES = self._reader.header['numFrames']
             self.IM_H = self._reader.header['height']
@@ -34,7 +34,7 @@ class vidReader():
             self.IM_W = self._reader.get(cv2.CAP_PROP_FRAME_WIDTH)
 
     def seek(self,f):
-        if self.ext=='seq':
+        if self.ext=='.seq':
             # I'm not sure this is a thing for seq files
             return
         else:
@@ -42,7 +42,7 @@ class vidReader():
 
 
     def getFrame(self,f):
-        if self.ext == 'seq':
+        if self.ext == '.seq':
             img = self._reader.getFrame(f)[0]
         else:
             self._reader.set(cv2.CAP_PROP_POS_FRAMES, f)
@@ -51,7 +51,7 @@ class vidReader():
         return img
 
     def getNext(self):  # I'm not sure that this actually works- do cv2 readers auto-advance?
-        if self.ext == 'seq':
+        if self.ext == '.seq':
             self.f = self.f+1
             img = self._reader.getFrame(self.f)[0]
         else:
@@ -60,7 +60,7 @@ class vidReader():
         return img
 
     def close(self):
-        if self.ext == 'seq':
+        if self.ext == '.seq':
             self._reader.close()
         else:
             self._reader.release()
