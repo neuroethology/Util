@@ -1158,8 +1158,20 @@ def seqIo_toVid(fName, ext='avi'):
     sr.close()
     print(out + ' converted')
 
+def countFrames(filename):
+    """
+    Manually counts the number of frames in a video
+    """
+    video = cv2.VideoCapture(filename)
+    total = 0
+    while True:
+        success, frame = video.read()
+        if not success:
+            break
+        else:
+            total += 1
 
-
+    return total
 
 # minimum header
 # header = {'width': IM_TOP_W,
