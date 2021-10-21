@@ -29,7 +29,7 @@ class vidReader():
                 print('video not readable')
             self.fps = self._reader.get(cv2.CAP_PROP_FPS)
             if np.isnan(self.fps): self.fps = 30.
-            self.NUM_FRAMES = int(self._reader.get(cv2.CAP_PROP_FRAME_COUNT))
+            self.NUM_FRAMES = countFrames(filename)
             self.IM_H = self._reader.get(cv2.CAP_PROP_FRAME_HEIGHT)
             self.IM_W = self._reader.get(cv2.CAP_PROP_FRAME_WIDTH)
 
